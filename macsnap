@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Get original path, even if it's a symlink
+SRC=$(dirname "$(realpath ${BASH_SOURCE[0]})")
+
+# Load variables and functions
+for f in $SRC/bin/*.sh; do . $f; done
+
+if [[ ! $(which MouseTools) ]]; then
+    m5hash="59fa0abec7f326f29b4fe86344ad3994"
+
+    # Download and Install it
+    curl -L http://www.hamsoftengineering.com/assets/MouseTools.zip -o ~/bin/MouseTools.zip --create-dirs
+
+    # If remote file has changed, then do nothing. Otherwise, we'll install it.
+    ziphash=($(md5 -r ~/bin/MouseTools.zip))
+
+    if [[ "${ziphash[0]}" == "${m5hash}" ]]; then
+        open ~/bin/MouseTools.zip
+    else
+        alert "Remote file has changed, exiting program.";
+    fi
+
+    sleep 1; rm ~/bin/MouseTools.zip
+else
+    # Grab Screen Dimensions and Position of Top Finder Window
+    desktopsize
+    windowposition
+    old_x=$x; old_y=$y
+
+    while true; do
+        # Get Position of Top Finder Window
+        windowposition
+
+        # Check to see if window position has changed
+        if [[ "$x" != "$old_x" ]]; then
+            # If dragged, then see if cursor is at side of screen
+            mouseposition
+
+            # Check to see if cursor hits left border. I've added a 10 pixel hit state.
+            if [[ "$mouse_x" -le 10 ]]; then
+                snap left
+                MouseTools -releaseMouse
+            fi
+
+            # Check to see if cursor hits right border. I've added a 50 pixel hit state.
+            if [[ "$mouse_x" -ge $((screen_width-50)) ]]; then
+                snap right
+                MouseTools -releaseMouse
+            fi
+        fi
+
+        old_x=$x; old_y=$y
+
+        sleep 0.1
+    done
+fi
