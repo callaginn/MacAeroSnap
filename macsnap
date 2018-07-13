@@ -21,7 +21,9 @@ if [[ ! $(which MouseTools) ]]; then
         alert "Remote file has changed, exiting program.";
     fi
 
-    sleep 1; rm ~/bin/MouseTools.zip
+    sleep 1;
+    rm ~/bin/MouseTools.zip
+    macsnap
 else
     # Grab Screen Dimensions and Position of Top Finder Window
     desktopsize

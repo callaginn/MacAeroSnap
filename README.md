@@ -10,7 +10,7 @@ This script adds AeroSnap functionality to macOS Sierra using only bash and appl
 ### Installation
 Paste the following into your Terminal:
 ```
-git clone https://github.com/callaginn/MacAeroSnap ~/bin/MacAeroSnap; ln -sf $_/macsnap ~/bin; echo 'PATH="$PATH:$HOME/bin"' >> ~/.bash_profile;
+git clone https://github.com/callaginn/MacAeroSnap ~/bin/MacAeroSnap; ln -sf $_/macsnap ~/bin; echo 'PATH="$PATH:$HOME/bin"' >> ~/.bash_profile; . ~/.bash_profile;
 ```
 
 > *The only external tool this requires is [MouseTools](http://hamsoftengineering.com). Running macsnap for the first time will download it, verify the zip file's MD5 hash, and extract it automatically.*
