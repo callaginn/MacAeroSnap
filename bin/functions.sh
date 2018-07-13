@@ -9,7 +9,8 @@ desktopsize () {
 }
 
 windowposition () {
-    xy=$(osascript -e 'tell application "Finder" to get the position of the front Finder window');
+    xy=$(osascript -e 'tell application "System Events" to set frontApp to name of first application process whose frontmost is true
+    tell application frontApp to get the bounds of the front window');
     x=$(echo "${xy}" | cut -d ',' -f 1 | sed 's/^ *//;s/ *$//');
     y=$(echo "${xy}" | cut -d ',' -f 2 | sed 's/^ *//;s/ *$//');
 }
@@ -26,14 +27,8 @@ mouseposition () {
 # ******************************************************************************
 
 snap () {
-    case "$1" in
-        right)
-            osascript "$SRC/bin/snap-right.scpt"
-        ;;
-        left)
-            osascript "$SRC/bin/snap-left.scpt"
-        ;;
-    esac
+    osascript "$SRC/bin/snap-$1.scpt"
+    MouseTools -releaseMouse
 }
 
 
