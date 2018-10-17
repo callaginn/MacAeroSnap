@@ -8,10 +8,10 @@ This script adds AeroSnap functionality to macOS Sierra using only bash and appl
 3. If the window is being dragged, it calls MouseTools for the mouse position and checks to see if the mouse has entered the left or right side of the screen. And if it has hit a boundary, it fires the appropriate AppleScript, which docks the frontmost Finder window to that side of the screen.
 
 ### Installation
-Paste the following into your Terminal:
+Paste the following into your Terminal:<br>
 `git clone https://github.com/callaginn/MacAeroSnap ~/bin/MacAeroSnap; ln -sf $_/macsnap ~/bin;`
 
-Make sure the destination folder has been added to your $PATH. If not, you can load it via this command:
+Make sure the destination folder has been added to your $PATH. If not, you can load it via this command:<br>
 `echo 'PATH="$PATH:$HOME/bin"' >> ~/.bash_profile; . ~/.bash_profile;`
 
 > *The only external tool this requires is [MouseTools](http://hamsoftengineering.com). Running macsnap for the first time will download it, verify the zip file's MD5 hash, and extract it automatically.*

@@ -3,9 +3,10 @@
 # Get original path, even if it's a symlink
 SRC=$(dirname "$(realpath ${BASH_SOURCE[0]})")
 
-# Load variables and functions
-for f in $SRC/bin/*.sh; do . $f; done
+# Simple Yellow Alert
+alert () { echo; tput bold; print -yellow "$1"; tput sgr0; }
 
+# Install MouseTools dependency if needed
 if [[ ! $(which MouseTools) ]]; then
     # Download MouseTools and check last-known MD5 hash. If it's the same, then
     # install it automatically. Otherwise, it will need to be added manually.
@@ -21,37 +22,7 @@ if [[ ! $(which MouseTools) ]]; then
 
     sleep 1;
     rm ~/bin/MouseTools.zip
-    macsnap
-else
-    # Grab Screen Dimensions and Position of Top Finder Window
-    desktopsize
-    windowposition
-    old_x=$x; old_y=$y
-
-    while true; do
-        # Get Position of Top Finder Window
-        windowposition
-
-        # Check to see if window position has changed
-        if [[ "$x" != "$old_x" || "$y" != "$old_y" ]]; then
-            # If dragged, then see if cursor is at side of screen
-            mouseposition
-
-            # Check to see if cursor hits left border. I've added a 10 pixel hit state.
-            if [[ "$mouse_x" -le 10 ]]; then snap left; fi
-
-            # Check to see if cursor hits right border. I've added a 50 pixel hit state.
-            if [[ "$mouse_x" -ge $((screen_width-50)) ]]; then snap right; fi
-
-            # Check to see if cursor hits top border (23px toolbar + 10). I've added a 10 pixel hit state.
-            if [[ "$mouse_y" -le 33 ]]; then snap top; fi
-
-            # Check to see if cursor hits bottom border. I've added a 10 pixel hit state.
-            if [[ "$mouse_y" -ge $((screen_height-10)) ]]; then snap bottom; fi
-        fi
-
-        old_x=$x; old_y=$y
-
-        sleep 1
-    done
 fi
+
+# Start running the script!
+mouse.py
