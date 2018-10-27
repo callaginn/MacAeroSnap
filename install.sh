@@ -4,7 +4,7 @@
 SRC=$(dirname "$(realpath ${BASH_SOURCE[0]})")
 
 # Simple Yellow Alert
-alert () { echo; tput bold; print -yellow "$1"; tput sgr0; }
+alert () {echo; tput bold && tput setaf 3 && echo "$1" && tput sgr0;}
 
 # Install MouseTools dependency if needed
 if [[ ! $(which MouseTools) ]]; then
@@ -17,12 +17,9 @@ if [[ ! $(which MouseTools) ]]; then
     if [[ "${ziphash[0]}" == "${m5hash}" ]]; then
         open ~/bin/MouseTools.zip
     else
-        alert "Remote file has changed, exiting program.";
+        alert "Remote file has changed, exiting installer.";
     fi
 
     sleep 1;
     rm ~/bin/MouseTools.zip
 fi
-
-# Start running the script!
-mouse.py

@@ -130,7 +130,7 @@ def snap(direction):
 
 
 def main():
-    threading.Timer(0.25, main).start() # called every half second
+    threading.Timer(0.1, main).start() # called every tenth of a second
 
     hitsize = 10
     cursor = mouseposition()
@@ -142,17 +142,19 @@ def main():
     x = xy[0]
     y = xy[1]
 
-    # If I'm correct, values should be sometimes different:
-    global old_x
-    global old_y
-    print "WINDOW POSITION"
-    print "OLD: " + old_x + ',' + old_y
-    print "NEW: " + x + ',' + y
-    print "---------------"
+    # Print Debugging Info if a (-v) flag is passed
+    if len(sys.argv) > 1 and sys.argv[1] == "-v":
+        global old_x
+        global old_y
+        print "WINDOW POSITION"
+        print "OLD: " + old_x + ',' + old_y
+        print "NEW: " + x + ',' + y
+        print "---------------"
 
     # See if window position has changed
     if x != old_x or y != old_y:
-        print "window moved."
+        if len(sys.argv) > 1 and sys.argv[1] == "-v":
+            print "window moved."
 
         # Check to see if cursor hits left, right, top, or bottom borders
         if mouse_x <= hitsize:
