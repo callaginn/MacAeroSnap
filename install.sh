@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Get original path, even if it's a symlink
-SRC=$(dirname "$(realpath ${BASH_SOURCE[0]})")
-
 # Simple Yellow Alert
 alert () {echo; tput bold && tput setaf 3 && echo "$1" && tput sgr0;}
 

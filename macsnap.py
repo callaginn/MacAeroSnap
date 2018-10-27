@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-# Get the current mouse position.
+# MacAeroSnap
+# This script adds aerosnap-like window-snapping to macOS Sierra using
+# python, tkinter, bash, and applescript.
 
 import logging
 import sys
