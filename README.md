@@ -16,4 +16,4 @@ At the moment, MacAeroSnap must be launched manually.
 `echo 'PATH="$PATH:$HOME/bin"' >> ~/.bash_profile; . ~/.bash_profile;`
 
 ### Start and Stop
-Type `mouse.py` into the macOS Terminal and press enter. For debugging info, pass an additional verbose flag to the script: `mouse.py -v`. You can stop MacAeroSnap at any time by closing the Terminal.
+Type `macsnap.py` into the macOS Terminal and press enter. For debugging info, pass an additional verbose flag to the script: `macsnap.py -v`. You can stop MacAeroSnap at any time by closing the Terminal.
