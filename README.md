@@ -1,5 +1,5 @@
 # Aero Snap for Mac OS X
-This python script adds AeroSnap functionality to macOS Sierra using python, bash, and applescripts. Unlike most macOS AeroSnap scripts, though, it uses the mouse when docking windows to the left, right, top, or bottom of the screen.
+This python script adds AeroSnap functionality to macOS Mojave using python3, bash, and applescripts. Unlike most macOS AeroSnap scripts, though, it uses the mouse when docking windows to the left, right, top, or bottom of the screen.
 
 At the moment, MacAeroSnap must be launched manually.
 
