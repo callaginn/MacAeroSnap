@@ -13,4 +13,4 @@ def position():
 	})
 
 def release():
-	subprocess.check_output('MouseTools -releaseMouse', shell=True)
+	subprocess.call('./release.swift')

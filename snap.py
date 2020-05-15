@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import subprocess
+from applescript import AppleScript as applescript
 
 def left():
 	script = '''
@@ -25,7 +25,7 @@ def left():
 		set bounds of window 1 to {0, 0, new_width, new_height}
 	end tell
 	'''
-	subprocess.call(['osascript', '-e', script])
+	applescript(script).run()
 
 def right():
 	script = '''
@@ -50,7 +50,7 @@ def right():
 		set bounds of window 1 to {new_width, 0, new_width * 2 + 4, new_height}
 	end tell
 	'''
-	subprocess.call(['osascript', '-e', script])
+	applescript(script).run()
 
 def top():
 	script = '''
@@ -75,7 +75,7 @@ def top():
 		set bounds of window 1 to {0, 0, new_width, new_height}
 	end tell
 	'''
-	subprocess.call(['osascript', '-e', script])
+	applescript(script).run()
 
 def bottom():
 	script = '''
@@ -100,4 +100,4 @@ def bottom():
 		set bounds of window 1 to {0, new_height, new_width, new_height * 2}
 	end tell
 	'''
-	subprocess.call(['osascript', '-e', script])
+	applescript(script).run()

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import subprocess
+from applescript import AppleScript as applescript
 from types import SimpleNamespace
 
 def position():
@@ -9,8 +9,7 @@ def position():
 	    tell application frontApp to get the bounds of the front window
 	'''
 
-	output = subprocess.check_output(['osascript', '-e', script]).decode()
-	bounds = output.replace('\n','').replace(' ','').split(",")
+	bounds = applescript(script).run()
 
 	return SimpleNamespace(**{
 		"left": bounds[0],

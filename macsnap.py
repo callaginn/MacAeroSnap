@@ -3,35 +3,33 @@
 # MacAeroSnap
 # This script adds aerosnap-like window-snapping to macOS Mojave using
 # python3, tkinter, bash, and applescript.
+# Print Debugging Info if a (-v) flag is passed
 
 import sys, threading, window, desktop, mouse, snap
 
-# Print Debugging Info if a (-v) flag is passed
+hitsize = 20
 debug = False
 
 if len(sys.argv) > 1 and sys.argv[1] == "-v":
 	debug = True
 
 def main():
-	threading.Timer(0.1, main).start() # called every tenth of a second
-
-	hitsize = 10
-	cursor = mouse.position()
+	# Repeat every tenth of a second
+	threading.Timer(0.1, main).start()
 
 	# Grab New Top Window Bounds
 	position.current = window.position()
 
-	if debug:
-		print({
-			"current": vars(position.current),
-			"old": vars(position.old)
-		})
-
 	# If window moves, check to see if cursor hit a boundary
 	if position.current.left != position.old.left or position.current.top != position.old.top:
-		if debug: print("window moved")
+		cursor = mouse.position()
 
-		if cursor.left <= hitsize:
+		if debug:
+			print("window is moving")
+			print(cursor.left)
+			# print({"current": position.current.left, "old": position.old.left})
+
+		if cursor.left <= int(hitsize):
 			mouse.release()
 			snap.left()
 
