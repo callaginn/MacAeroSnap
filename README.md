@@ -3,6 +3,9 @@ This python script adds AeroSnap functionality to macOS Mojave using python3, ba
 
 At the moment, MacAeroSnap must be launched manually.
 
+#### Dependencies:
+- py-applescript
+
 ### How it Works
 - MacAeroSnap asks Applescript for the desktop size and foremost window position.
 - Every 0.1 seconds, it records the Finder window position and checks it against the last recorded position. If it's different, it assumes the window is being dragged.
